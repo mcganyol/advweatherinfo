@@ -1,30 +1,39 @@
 package hu.bme.aut.weatherinfo.ui.model;
 
+import android.util.Log;
 
+import com.google.gson.annotations.Expose;
 import com.orm.SugarRecord;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class City extends SugarRecord {
 
+public class City extends SugarRecord implements Comparable<City>{
 
-    private String name;
+    @Expose
+    public String name;
+
+    public City() {
+        super();
+    }
 
     public City (String name) {
-        setName(name);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+        super();
         this.name = name;
     }
 
+    public int compareTo(City other) {
+        return name.compareTo(other.name);
+    }
+
     public static City findOrCreate(String name) {
-        List<City> cities = City.find(City.class, "name = ?", name);  //ORM
+        Log.d("name:" , name);
+        //List<City> cities = City.find(City.class, "name = ?", "szar");  //ORM
+        List<City> cities = Select.from(City.class).where(Condition.prop("name").eq(name)).list();
         City varos; // both
         //varos = new City(name); //not-ORM
         if (cities.isEmpty()) { //ORM
@@ -38,9 +47,8 @@ public class City extends SugarRecord {
     }
 
     public static List<City> getAllCities() {
-        List<City> cities = City.listAll(City.class);  //ORM
-        //List<City> cities =  new ArrayList<City>();   //not-ORM
-        //cities.add(new City("budaNEMORMpest")); //not-ORM
+        List<City> cities = City.listAll(City.class);
+        Collections.sort(cities); //alphabetical order should be allowed-disabled in settings
         return cities;
     }
 

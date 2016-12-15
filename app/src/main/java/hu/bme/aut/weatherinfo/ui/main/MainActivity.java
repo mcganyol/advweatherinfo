@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
         List<City> citiesToShow = City.getAllCities();
         int i = 0;
         while (i < citiesToShow.size()) {
+
             adapter.addCity(citiesToShow.get(i));
             i++;
         }

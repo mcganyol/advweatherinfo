@@ -9,7 +9,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.orm.util.Collection;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import hu.bme.aut.weatherinfo.R;
@@ -24,7 +27,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityViewHolder
 
     public CityAdapter(OnCitySelectedListener listener) {
         this.listener = listener;
-        cities = new ArrayList<>();
+        cities = new ArrayList<City>();
     }
 
     @Override
@@ -37,7 +40,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityViewHolder
     @Override
     public void onBindViewHolder(CityViewHolder holder, int position) {
         holder.position = position;
-        holder.nameTextView.setText(cities.get(position).getName());
+        holder.nameTextView.setText(cities.get(position).name);
     }
 
     @Override
@@ -46,8 +49,17 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityViewHolder
     }
 
     public void addCity(City newCity) {
-        cities.add(newCity);
-        notifyItemInserted(cities.size() - 1);
+        int i = 0;
+        boolean isItNew = true;
+        while (i < cities.size()) {
+            if (newCity.name.equals(cities.get(i).name)) isItNew = false;
+            i++;
+        }
+        if (isItNew) {
+            cities.add(newCity);
+            notifyItemInserted(cities.size() - 1);
+        }
+
     }
 
     public void removeCity(int position) {
@@ -73,7 +85,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityViewHolder
                 @Override
                 public void onClick(View view) {
                     if (listener != null) {
-                        listener.onCitySelected(cities.get(position).getName());
+                        listener.onCitySelected(cities.get(position).name);
                     }
                 }
             });
