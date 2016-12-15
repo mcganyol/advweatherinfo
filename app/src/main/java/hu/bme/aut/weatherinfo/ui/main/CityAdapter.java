@@ -59,15 +59,19 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityViewHolder
             cities.add(newCity);
             notifyItemInserted(cities.size() - 1);
         }
-
     }
 
     public void removeCity(int position) {
+        City.destroyCity(cities.get(position).name);
         cities.remove(position);
         notifyItemRemoved(position);
         if (position < cities.size()) {
             notifyItemRangeChanged(position, cities.size() - position);
         }
+    }
+
+    public String getCityNameById(int position) {
+        return cities.get(position).name;
     }
 
     public class CityViewHolder extends RecyclerView.ViewHolder {
