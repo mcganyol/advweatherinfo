@@ -37,7 +37,9 @@ public class AddCityDialogFragment extends AppCompatDialogFragment {
         return new AlertDialog.Builder(getContext()).setTitle(R.string.new_city).setView(getContentView()).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                listener.onCityAdded(City.findOrCreate(editText.getText().toString()));
+                String cityName = editText.getText().toString();
+                String cityNameCapitalized = cityName.substring(0,1).toUpperCase() + cityName.substring(1).toLowerCase();
+                listener.onCityAdded(City.findOrCreate(cityNameCapitalized));
             }
         }).setNegativeButton(R.string.cancel, null).create();
     }

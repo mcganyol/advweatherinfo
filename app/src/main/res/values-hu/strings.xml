@@ -1,27 +1,27 @@
 <resources>
-    <string name="app_name">WeatherInfo</string>
-    <string name="action_settings">Settings</string>
-    <string name="remove">Remove</string>
-    <string name="new_city">New city</string>
+    <string name="app_name">Időjárás infó</string>
+    <string name="action_settings">Beállítások</string>
+    <string name="remove">Törlés</string>
+    <string name="new_city">Új város</string>
     <string name="ok">OK</string>
-    <string name="cancel">Cancel</string>
-    <string name="title_activity_details">DetailsActivity</string>
+    <string name="cancel">Mégsem</string>
+    <string name="title_activity_details">RészletekActivity</string>
     <!--<string name="weather">Weather</string>-->
-    <string name="temperature">Temperature</string>
-    <string name="min_temperature">Min temperature</string>
-    <string name="max_temperature">Max temperature</string>
-    <string name="pressure">Pressure</string>
-    <string name="humidity">Humidity</string>
-    <string name="main">Main</string>
-    <string name="details">Details</string>
+    <string name="temperature">Hőmérséklet</string>
+    <string name="min_temperature">Min hőmérséklet</string>
+    <string name="max_temperature">Max hőmérséklet</string>
+    <string name="pressure">Nyomás</string>
+    <string name="humidity">Páratartalom</string>
+    <string name="main">Fő oldal</string>
+    <string name="details">Részletek</string>
 
-    <string name="weather">Weather in %s </string>
-    <string name="title_activity_cities_settings">Settings</string>
+    <string name="weather">Az időjárás itt: %s </string>
+    <string name="title_activity_cities_settings">Beállítások</string>
 
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->
-    <string name="pref_header_general">General</string>
+    <string name="pref_header_general">Általános</string>
 
     <string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact
@@ -89,9 +89,8 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
-    <string name="delete_confirmation_text">Do you want to delete</string>
-    <string name="Yes">Yes</string>
-    <string name="No">No</string>
-    <string name="title_activity_weather_settings">Settings</string>
+    <string name="delete_confirmation_text">Le akarod törölni</string>
+    <string name="Yes">Igen</string>
+    <string name="No">Nem</string>
 
 </resources>

@@ -32,8 +32,11 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
         initFab();
+        SettingsActivityButton();
         initRecyclerView();
     }
 
@@ -55,15 +58,27 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
         startActivity(showDetailsIntent);
     }
 
+    private void SettingsActivityButton() {
+        FloatingActionButton settingsButton = (FloatingActionButton) findViewById(R.id.settings);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent showSettingsActivityIntent = new Intent();
+                showSettingsActivityIntent.setClass(MainActivity.this, WeatherSettingsActivity.class);
+                startActivity(showSettingsActivityIntent);
+            }
+        });
+    }
+
     @Override
     public void onRemoveSelected(int citynr) {
         final int toDelete = citynr;
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setMessage("Are you sure you want to delete " + adapter.getCityNameById(toDelete) + "?");
+        builder1.setMessage(R.string.delete_confirmation_text + adapter.getCityNameById(toDelete) + "?");
         builder1.setCancelable(true);
 
         builder1.setPositiveButton(
-                "Yes",
+                R.string.Yes,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         adapter.removeCity(toDelete);
@@ -71,17 +86,15 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
                 });
 
         builder1.setNegativeButton(
-                "No",
+                R.string.No,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }
                 });
 
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
-
-        //adapter.removeCity(citynr);
+        AlertDialog deleteConfirmation = builder1.create();
+        deleteConfirmation.show();
     }
 
     private void initRecyclerView() {
