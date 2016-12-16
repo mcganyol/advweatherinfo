@@ -17,6 +17,7 @@
 
     <string name="weather">Az időjárás itt: %s </string>
     <string name="title_activity_cities_settings">Beállítások</string>
+    <string name="deltext">Le akarod törölni ezt:</string>
 
     <!-- Strings related to Settings -->
 
@@ -46,22 +47,20 @@
     <!-- Example settings for Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; sync</string>
 
-    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string name="pref_title_sync_frequency">Frissítési időköz</string>
     <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
+        <item>1 perc</item>
+        <item>10 perc</item>
+        <item>30 perc</item>
+        <item>2 óra</item>
+        <item>12 óra</item>
     </string-array>
     <string-array name="pref_sync_frequency_values">
-        <item>15</item>
+        <item>1</item>
+        <item>10</item>
         <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
+        <item>120</item>
+        <item>720</item>
     </string-array>
 
     <string-array name="list_preference_entries">
@@ -89,8 +88,8 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
-    <string name="delete_confirmation_text">Le akarod törölni</string>
     <string name="Yes">Igen</string>
     <string name="No">Nem</string>
+    <string name="alphabetic">Városok betűrendben</string>
 
 </resources>

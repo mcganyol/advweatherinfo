@@ -29,10 +29,7 @@ public class DetailsActivity extends AppCompatActivity implements WeatherDataHol
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-
         city = getIntent().getStringExtra(EXTRA_CITY_NAME);
-        getSupportActionBar().setTitle(getString(R.string.weather, city));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 

@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
 
         initFab();
         SettingsActivityButton();
@@ -74,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
     public void onRemoveSelected(int citynr) {
         final int toDelete = citynr;
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setMessage(R.string.delete_confirmation_text + adapter.getCityNameById(toDelete) + "?");
+        builder1.setMessage(getString(R.string.deltext) + " " + adapter.getCityNameById(toDelete) + "?");
         builder1.setCancelable(true);
 
         builder1.setPositiveButton(
