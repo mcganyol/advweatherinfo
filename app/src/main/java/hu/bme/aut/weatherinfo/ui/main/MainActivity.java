@@ -2,20 +2,16 @@ package hu.bme.aut.weatherinfo.ui.main;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
 
 
 import java.util.List;
@@ -23,20 +19,20 @@ import java.util.List;
 import hu.bme.aut.weatherinfo.R;
 import hu.bme.aut.weatherinfo.ui.details.DetailsActivity;
 import hu.bme.aut.weatherinfo.ui.model.City;
-import hu.bme.aut.weatherinfo.ui.model.UserSetting;
 
-public class MainActivity extends AppCompatActivity implements AddCityDialogListener, OnCitySelectedListener {
+public class MainActivity extends AppCompatActivity implements AddCityDialogListener, OnCitySelectedListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private RecyclerView recyclerView;
     private CityAdapter adapter;
+
+    public static final String KEY_PREF_SYNC_CONN = "alphabetic";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initFab();
-        SettingsActivityButton();
+        initSettingsButton();
         initRecyclerView();
     }
 
@@ -58,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
         startActivity(showDetailsIntent);
     }
 
-    private void SettingsActivityButton() {
+    private void initSettingsButton() {
         FloatingActionButton settingsButton = (FloatingActionButton) findViewById(R.id.settings);
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,5 +109,14 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
     @Override
     public void onCityAdded(City city) {
         adapter.addCity(city);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {  //TODO miert nem megy?
+        Log.d("yay","yay");
+        if (key.equals(KEY_PREF_SYNC_CONN)) {
+            initRecyclerView();
+        }
+
     }
 }

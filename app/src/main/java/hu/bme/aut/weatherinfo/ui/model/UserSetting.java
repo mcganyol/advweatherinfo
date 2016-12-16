@@ -4,7 +4,7 @@ import com.orm.SugarRecord;
 
 import java.util.List;
 
-public class UserSetting extends SugarRecord {
+public class UserSetting extends SugarRecord {  //completly unused class due to SharedPreferences
 
 
     public int syncFrequency;
