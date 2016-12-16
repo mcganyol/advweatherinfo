@@ -11,6 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 
@@ -20,10 +23,11 @@ import hu.bme.aut.weatherinfo.R;
 import hu.bme.aut.weatherinfo.ui.details.DetailsActivity;
 import hu.bme.aut.weatherinfo.ui.model.City;
 
-public class MainActivity extends AppCompatActivity implements AddCityDialogListener, OnCitySelectedListener, SharedPreferences.OnSharedPreferenceChangeListener {
+public class MainActivity extends AppCompatActivity implements AddCityDialogListener, OnCitySelectedListener {
 
     private RecyclerView recyclerView;
     private CityAdapter adapter;
+    private boolean inAlphabeticalOrder;
 
     public static final String KEY_PREF_SYNC_CONN = "alphabetic";
 
@@ -32,8 +36,40 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initFab();
-        initSettingsButton();
         initRecyclerView();
+        inAlphabeticalOrder = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("alphabetic",true);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.weather_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_settings:
+                Intent showSettingsActivityIntent = new Intent();
+                showSettingsActivityIntent.setClass(MainActivity.this, WeatherSettingsActivity.class);
+                showSettingsActivityIntent.putExtra(WeatherSettingsActivity.EXTRA_SHOW_FRAGMENT, WeatherSettingsActivity.GeneralPreferenceFragment.class.getName());
+                showSettingsActivityIntent.putExtra(WeatherSettingsActivity.EXTRA_NO_HEADERS, true);
+                startActivity(showSettingsActivityIntent);
+                break;
+        }
+        return true;
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        boolean currentAlphabeticalSetting = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("alphabetic",true);
+        if (inAlphabeticalOrder != currentAlphabeticalSetting) {
+            inAlphabeticalOrder = currentAlphabeticalSetting;
+            initRecyclerView();
+        }
     }
 
     private void initFab() {
@@ -52,18 +88,6 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
         showDetailsIntent.setClass(MainActivity.this, DetailsActivity.class);
         showDetailsIntent.putExtra(DetailsActivity.EXTRA_CITY_NAME, city);
         startActivity(showDetailsIntent);
-    }
-
-    private void initSettingsButton() {
-        FloatingActionButton settingsButton = (FloatingActionButton) findViewById(R.id.settings);
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent showSettingsActivityIntent = new Intent();
-                showSettingsActivityIntent.setClass(MainActivity.this, WeatherSettingsActivity.class);
-                startActivity(showSettingsActivityIntent);
-            }
-        });
     }
 
     @Override
@@ -97,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
         recyclerView = (RecyclerView) findViewById(R.id.MainRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new CityAdapter(this);
-        List<City> citiesToShow = City.getAllCities(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("alphabetic",true));
+        List<City> citiesToShow = City.getAllCities(inAlphabeticalOrder);
         int i = 0;
         while (i < citiesToShow.size()) {
             adapter.addCity(citiesToShow.get(i));
@@ -111,12 +135,4 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
         adapter.addCity(city);
     }
 
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {  //TODO miert nem megy?
-        Log.d("yay","yay");
-        if (key.equals(KEY_PREF_SYNC_CONN)) {
-            initRecyclerView();
-        }
-
-    }
 }

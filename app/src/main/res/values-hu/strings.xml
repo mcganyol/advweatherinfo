@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Időjárás infó</string>
+    <string name="app_name">IdőjárásInfó</string>
     <string name="action_settings">Beállítások</string>
     <string name="remove">Törlés</string>
     <string name="new_city">Új város</string>
