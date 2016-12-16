@@ -3,16 +3,16 @@
     <SwitchPreference
         android:defaultValue="true"
         android:key="alphabetic"
-        android:summary="@string/alphabetic" />
+        android:title="@string/alphabetic" />
 
 
     <ListPreference
-        android:defaultValue="-1"
+        android:defaultValue="10"
         android:entries="@array/pref_example_list_titles"
         android:entryValues="@array/pref_example_list_values"
-        android:key="example_list"
+        android:key="frequency_list"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
-        android:title="@string/pref_title_add_friends_to_messages" />
+        android:title="@string/refresh_interval" />
 
 </PreferenceScreen>

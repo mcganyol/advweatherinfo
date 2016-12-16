@@ -34,14 +34,16 @@
 
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
     <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
+        <item>1 perc</item>
+        <item>10 perc</item>
+        <item>1 óra</item>
+        <item>6 óra</item>
     </string-array>
     <string-array name="pref_example_list_values">
         <item>1</item>
-        <item>0</item>
-        <item>-1</item>
+        <item>10</item>
+        <item>60</item>
+        <item>360</item>
     </string-array>
 
     <!-- Example settings for Data & Sync -->
@@ -91,5 +93,6 @@
     <string name="Yes">Igen</string>
     <string name="No">Nem</string>
     <string name="alphabetic">Városok betűrendben</string>
+    <string name="refresh_interval">Frissítési tolerancia</string>
 
 </resources>

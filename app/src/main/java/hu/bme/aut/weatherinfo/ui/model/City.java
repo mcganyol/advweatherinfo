@@ -1,5 +1,7 @@
 package hu.bme.aut.weatherinfo.ui.model;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.gson.annotations.Expose;
@@ -46,9 +48,11 @@ public class City extends SugarRecord implements Comparable<City>{
         return varos;
     }
 
-    public static List<City> getAllCities() {
+    public static List<City> getAllCities(boolean ordered) {
         List<City> cities = City.listAll(City.class);
-        Collections.sort(cities); //alphabetical order should be allowed-disabled in settings
+        if (ordered) {
+            Collections.sort(cities);
+        }
         return cities;
     }
 

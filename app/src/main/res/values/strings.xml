@@ -33,15 +33,17 @@
     <string name="pref_default_display_name">John Smith</string>
 
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-    <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
+    <string-array name="pref_frequency_list_titles">
+        <item>1 minute</item>
+        <item>10 minutes</item>
+        <item>1 hour</item>
+        <item>6 hours</item>
     </string-array>
-    <string-array name="pref_example_list_values">
+    <string-array name="pref_frequency_list_values">
         <item>1</item>
-        <item>0</item>
-        <item>-1</item>
+        <item>10</item>
+        <item>60</item>
+        <item>360</item>
     </string-array>
 
     <!-- Example settings for Data & Sync -->
@@ -92,5 +94,6 @@
     <string name="No">No</string>
     <string name="title_activity_weather_settings">Settings</string>
     <string name="alphabetic">Alphabetic order of cities</string>
+    <string name="refresh_interval">Refresh delay</string>
 
 </resources>

@@ -3,6 +3,7 @@ package hu.bme.aut.weatherinfo.ui.main;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -22,6 +23,7 @@ import java.util.List;
 import hu.bme.aut.weatherinfo.R;
 import hu.bme.aut.weatherinfo.ui.details.DetailsActivity;
 import hu.bme.aut.weatherinfo.ui.model.City;
+import hu.bme.aut.weatherinfo.ui.model.UserSetting;
 
 public class MainActivity extends AppCompatActivity implements AddCityDialogListener, OnCitySelectedListener {
 
@@ -99,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
         recyclerView = (RecyclerView) findViewById(R.id.MainRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new CityAdapter(this);
-        List<City> citiesToShow = City.getAllCities();
+        List<City> citiesToShow = City.getAllCities(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("alphabetic",true));
         int i = 0;
         while (i < citiesToShow.size()) {
             adapter.addCity(citiesToShow.get(i));
