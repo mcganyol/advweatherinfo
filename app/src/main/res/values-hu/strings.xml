@@ -94,5 +94,7 @@
     <string name="No">Nem</string>
     <string name="alphabetic">Városok betűrendben</string>
     <string name="refresh_interval">Frissítési tolerancia</string>
+    <string name="error">"Hiba: %s"</string>
+    <string name="error_in_network_req">Hiba a hálózati kapcsolódás során</string>
 
 </resources>

@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import hu.bme.aut.weatherinfo.R;
+import hu.bme.aut.weatherinfo.ui.model.City;
 import hu.bme.aut.weatherinfo.ui.model.WeatherData;
 import hu.bme.aut.weatherinfo.ui.network.NetworkManager;
 import retrofit2.Call;
@@ -56,6 +57,7 @@ public class DetailsActivity extends AppCompatActivity implements WeatherDataHol
     }
 
     private void loadWeatherData() {
+
         NetworkManager.getInstance().getWeather(city).enqueue(new Callback<WeatherData>() {
             @Override
             public void onResponse(Call<WeatherData> call, Response<WeatherData> response) {
@@ -63,14 +65,14 @@ public class DetailsActivity extends AppCompatActivity implements WeatherDataHol
                 if (response.isSuccessful()) {
                     displayWeatherData(response.body());
                 } else {
-                    Toast.makeText(DetailsActivity.this, "Error: " + response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailsActivity.this, getString(R.string.error, response.message()), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<WeatherData> call, Throwable t) {
                 t.printStackTrace();
-                Toast.makeText(DetailsActivity.this, "Error in network request, check LOG", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetailsActivity.this, R.string.error_in_network_req, Toast.LENGTH_SHORT).show();
             }
         });
     }

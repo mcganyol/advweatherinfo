@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
                 showSettingsActivityIntent.setClass(MainActivity.this, WeatherSettingsActivity.class);
                 showSettingsActivityIntent.putExtra(WeatherSettingsActivity.EXTRA_SHOW_FRAGMENT, WeatherSettingsActivity.GeneralPreferenceFragment.class.getName());
                 showSettingsActivityIntent.putExtra(WeatherSettingsActivity.EXTRA_NO_HEADERS, true);
-                showSettingsActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  // for the back button to function properly
+                //showSettingsActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  // for the back button to function properly
                 startActivity(showSettingsActivityIntent);
                 return true;
         }
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
     @Override
     protected void onResume() {
         super.onResume();
-        boolean currentAlphabeticalSetting = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("alphabetic",true);
+        boolean currentAlphabeticalSetting = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("alphabetic",false);
         if (inAlphabeticalOrder != currentAlphabeticalSetting) {
             inAlphabeticalOrder = currentAlphabeticalSetting;
             initRecyclerView();
