@@ -35,9 +35,10 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        inAlphabeticalOrder = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("alphabetic",true);
         initFab();
         initRecyclerView();
-        inAlphabeticalOrder = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("alphabetic",true);
+
     }
 
     @Override
@@ -49,16 +50,17 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_settings:
+        int id = item.getItemId();
+        if (id == R.id.action_settings){
                 Intent showSettingsActivityIntent = new Intent();
                 showSettingsActivityIntent.setClass(MainActivity.this, WeatherSettingsActivity.class);
                 showSettingsActivityIntent.putExtra(WeatherSettingsActivity.EXTRA_SHOW_FRAGMENT, WeatherSettingsActivity.GeneralPreferenceFragment.class.getName());
                 showSettingsActivityIntent.putExtra(WeatherSettingsActivity.EXTRA_NO_HEADERS, true);
+                showSettingsActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  // for the back button to function properly
                 startActivity(showSettingsActivityIntent);
-                break;
+                return true;
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -94,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
     public void onRemoveSelected(int citynr) {
         final int toDelete = citynr;
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setMessage(getString(R.string.deltext) + " " + adapter.getCityNameById(toDelete) + "?");
+        builder1.setMessage(getString(R.string.deltext, adapter.getCityNameById(toDelete)));
         builder1.setCancelable(true);
 
         builder1.setPositiveButton(

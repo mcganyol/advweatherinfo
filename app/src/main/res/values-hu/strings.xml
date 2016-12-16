@@ -12,12 +12,12 @@
     <string name="max_temperature">Max hőmérséklet</string>
     <string name="pressure">Nyomás</string>
     <string name="humidity">Páratartalom</string>
-    <string name="main">Fő oldal</string>
+    <string name="main">Áttekintés</string>
     <string name="details">Részletek</string>
 
     <string name="weather">Az időjárás itt: %s </string>
     <string name="title_activity_cities_settings">Beállítások</string>
-    <string name="deltext">Le akarod törölni ezt:</string>
+    <string name="deltext">Le akarod törölni ezt: %s?</string>
 
     <!-- Strings related to Settings -->
 
