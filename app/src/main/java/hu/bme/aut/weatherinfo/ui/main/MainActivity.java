@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
         inAlphabeticalOrder = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("alphabetic",true);
         initFab();
         initRecyclerView();
-
     }
 
     @Override
@@ -135,6 +134,8 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogList
     @Override
     public void onCityAdded(City city) {
         adapter.addCity(city);
+        initRecyclerView();
     }
+
 
 }

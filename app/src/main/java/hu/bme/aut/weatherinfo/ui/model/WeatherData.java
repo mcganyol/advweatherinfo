@@ -1,8 +1,6 @@
 package hu.bme.aut.weatherinfo.ui.model;
 
 
-import android.preference.PreferenceManager;
-
 import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -15,37 +13,37 @@ public class WeatherData extends SugarRecord{
     public List<Weather> weather;
     public MainWeatherData main;
     public Wind wind;
-    public String cityName;
-    public Long timeOfDownload;
+    public String cityname;
+    public Long timeofdownload;
 
-    public WeatherData(String cityName) {
-        this.cityName = cityName;
+    public WeatherData(String cityname) {
+        this.cityname = cityname;
     }
 
-    public Long getTimeOfDownload() {
-        return timeOfDownload;
+    public Long getTimeofdownload() {
+        return timeofdownload;
     }
 
-    public void setTimeOfDownload(Long timeOfDownload) {
-        this.timeOfDownload = timeOfDownload;
+    public void setTimeofdownload(Long timeofdownload) {
+        this.timeofdownload = timeofdownload;
     }
 
-    public String getCityName() {
-        return cityName;
+    public String getCityname() {
+        return cityname;
     }
 
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
+    public void setCityname(String cityname) {
+        this.cityname = cityname;
     }
 
     public static boolean isExistsFor(String cityName) {
-        List<WeatherData> wds = Select.from(WeatherData.class).where(Condition.prop("cityName").eq(cityName)).list();
+        List<WeatherData> wds = Select.from(WeatherData.class).where(Condition.prop("cityname").eq(cityName)).list();
         if (wds.isEmpty()) return false;
         else return true;
     }
 
     public static WeatherData findOrCreate(String cityName) {
-        List<WeatherData> wds = Select.from(WeatherData.class).where(Condition.prop("cityName").eq(cityName)).list();
+        List<WeatherData> wds = Select.from(WeatherData.class).where(Condition.prop("cityname").eq(cityName)).list();
         WeatherData wd;
         if (wds.isEmpty()) {
             wd = new WeatherData(cityName);
